@@ -16,7 +16,6 @@ defmodule MessagesWeb.StatusLive do
   end
 
   def handle_info("sent", socket) do
-    IO.inspect("ra")
     {:noreply, assign(socket, status: "sent")}
   end
 end

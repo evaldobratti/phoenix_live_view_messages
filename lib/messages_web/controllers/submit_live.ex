@@ -24,7 +24,6 @@ defmodule MessagesWeb.SubmitLive do
   end
 
   def handle_event("submit", _value, socket) do
-
     Task.start(fn -> send_messages(socket.assigns.total_messages) end)
 
     {:noreply, socket}
@@ -37,8 +36,6 @@ defmodule MessagesWeb.SubmitLive do
   defp send_messages(total_messages) do
     Enum.each(0..total_messages, fn id ->
       :timer.sleep(500)
-
-      IO.inspect(id)
 
       Phoenix.PubSub.broadcast!(Messages.PubSub, "status:#{id}", "sent")
       Phoenix.PubSub.broadcast!(Messages.PubSub, "status", {id, "sent"})
