@@ -1,0 +1,5 @@
+<%= live_render(@conn, MessagesWeb.SubmitLive, session: %{"total_messages" => @status_count}) %>
+
+<%= for i <- 0..@status_count do %>
+  <%= live_render(@conn, MessagesWeb.StatusLive, session: %{"id" => i}) %>
+<% end %>
